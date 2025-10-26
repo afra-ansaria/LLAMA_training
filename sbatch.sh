@@ -1,4 +1,4 @@
-# #!/bin/bash
+#!/bin/bash
 
 # # SBATCH --job-name=llama-finetune
 # # SBATCH --nodes=1
@@ -26,10 +26,7 @@
 # cd $SLURM_SUBMIT_DIR
 # srun srun.sh
 
-
-#!/bin/bash
 #SBATCH --job-name=llama-finetune
-#SBATCH --partition=gpu            # <- real GPU partition name
 #SBATCH --nodes=1
 #SBATCH --gpus-per-node=4
 #SBATCH --ntasks-per-node=4        # 1 process per GPU
