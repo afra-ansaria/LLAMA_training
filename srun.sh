@@ -1,7 +1,7 @@
 #! /bin/bash
 
 cd $SLURM_SUBMIT_DIR
-export GPUS_PER_NODE=8
+export GPUS_PER_NODE=4
 HOST_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
 MAIN_PROCESS_PORT=12345
 
