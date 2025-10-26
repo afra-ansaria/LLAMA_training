@@ -1,12 +1,12 @@
 #!/bin/bash
 
 #SBATCH --job-name=llama-finetune
-#SBATCH --nodes=3
+#SBATCH --nodes=1
 #SBATCH -D .
 #SBATCH --output=O-%x_%j.txt
 #SBATCH --error=E-%x_%j.txt
 #SBATCH --gres=gpu:8
-#SBATCH --cpus-per-task=120
+#SBATCH --cpus-per-task=100
 #SBATCH --export=ALL
 
 export OMP_NUM_THREADS=120
