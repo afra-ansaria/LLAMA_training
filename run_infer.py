@@ -7,7 +7,7 @@ ADAPTER = "saved_peft_model"    # your finetune --output_dir
 
 # 1) load base
 tokenizer = AutoTokenizer.from_pretrained(BASE, use_fast=True)
-model = AutoModelForCausalLM.from_pretrained(BASE, torch_dtype=torch.bfloat16).to("cuda")
+model = AutoModelForCausalLM.from_pretrained(BASE, dtype=torch.bfloat16).to("cuda")
 
 # 2) load LoRA adapter (PEFT)
 from peft import PeftModel
