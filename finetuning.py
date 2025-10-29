@@ -1,5 +1,3 @@
-# Copyright (c) Meta Platforms, Inc. and affiliates.
-# This software may be used and distributed according to the terms of the Llama 2 Community License Agreement.
 
 import dataclasses
 import os
@@ -60,25 +58,6 @@ from transformers.models.mllama.modeling_mllama import (
     MllamaSelfAttentionDecoderLayer,
     MllamaVisionEncoderLayer,
 )
-
-
-def setup_wandb(train_config, fsdp_config, **kwargs):
-    try:
-        import wandb
-    except ImportError:
-        raise ImportError(
-            "You are trying to use wandb which is not currently installed. "
-            "Please install it using pip install wandb"
-        )
-    from llama_cookbook.configs import wandb_config as WANDB_CONFIG
-
-    wandb_config = WANDB_CONFIG()
-    update_config(wandb_config, **kwargs)
-    init_dict = dataclasses.asdict(wandb_config)
-    run = wandb.init(**init_dict)
-    run.config.update(train_config)
-    run.config.update(fsdp_config, allow_val_change=True)
-    return run
 
 
 def main(**kwargs):
@@ -183,8 +162,7 @@ def main(**kwargs):
     if not tokenizer.pad_token_id:
         tokenizer.pad_token_id = tokenizer.eos_token_id
 
-    # If there is a mismatch between tokenizer vocab size and embedding matrix,
-    # throw a warning and then expand the embedding matrix
+
     if len(tokenizer) > model.get_input_embeddings().weight.shape[0]:
         print(
             "WARNING: Resizing the embedding matrix to match the tokenizer vocab size."
