@@ -1,0 +1,5 @@
+# srun --gres=gpu:4 --cpus-per-task=4 python run_infer.py
+#srun --gres=gpu:4 --cpus-per-task=4 --mem=32G   uvicorn serve_infer:app --host 0.0.0.0 --port 8000
+#For curl run the serve_infer.py
+
+# curl -X POST http://10.6.60.253:8000/generate   -H "Content-Type: application/json"   -d '{"prompt":"Explain quantum computing to a 30-year-old. Keep your answers to 150 words","max_tokens":200}'
