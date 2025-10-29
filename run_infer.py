@@ -1,4 +1,4 @@
-# run_infer.py
+# run_infer.py. Simple example file. You can change the prompt below. 
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
 

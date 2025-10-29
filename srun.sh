@@ -17,9 +17,9 @@ torchrun --nnodes $SLURM_NNODES \
 --master_addr $HOST_ADDR \
 --master_port $MAIN_PROCESS_PORT \
 --node_rank=$SLURM_NODEID \
-finetuning.py \
+finetune.py \
 --model_name ./llama-3-8b \
---output_dir saved_peft_model \
+--output_dir save_finetuned_model \
 --use_peft \
 --peft_method lora \
 --enable_fsdp \

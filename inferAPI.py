@@ -1,3 +1,4 @@
+#This file is to call the inference API. You can call the /generate API to get a response for the prompt
 from fastapi import FastAPI
 from pydantic import BaseModel
 from transformers import AutoTokenizer, AutoModelForCausalLM
