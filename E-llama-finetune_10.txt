@@ -1,0 +1,25 @@
+pyxis: created lock file /var/cache/enroot-container-images/0/ghcr.io/yourorg/torch:2.4-cuda12.1.lock
+slurmstepd: error: pyxis: child 111564 failed with error code: 1
+slurmstepd: error: pyxis: failed to import docker image
+slurmstepd: error: pyxis: printing enroot log file:
+slurmstepd: error: pyxis:     [INFO] Querying registry for permission grant
+slurmstepd: error: pyxis:     [INFO] Authenticating with user: <anonymous>
+slurmstepd: error: pyxis:     [INFO] Authentication succeeded
+slurmstepd: error: pyxis:     [INFO] Fetching image manifest list
+slurmstepd: error: pyxis:     [INFO] Fetching image manifest
+slurmstepd: error: pyxis:     [ERROR] URL https://registry-1.docker.io/v2/ghcr.io/yourorg/torch/manifests/2.4-cuda12.1 returned error code: 401 Unauthorized
+slurmstepd: error: pyxis: couldn't start container
+slurmstepd: error: spank: required plugin spank_pyxis.so: task_init() failed with rc=-1
+slurmstepd: error: Failed to invoke spank plugin stack
+slurmstepd: error: pyxis: couldn't start container
+slurmstepd: error: spank: required plugin spank_pyxis.so: task_init() failed with rc=-1
+slurmstepd: error: Failed to invoke spank plugin stack
+slurmstepd: error: pyxis: couldn't start container
+slurmstepd: error: spank: required plugin spank_pyxis.so: task_init() failed with rc=-1
+slurmstepd: error: Failed to invoke spank plugin stack
+slurmstepd: error: pyxis: couldn't start container
+slurmstepd: error: spank: required plugin spank_pyxis.so: task_init() failed with rc=-1
+slurmstepd: error: Failed to invoke spank plugin stack
+slurmstepd: error: pyxis: child 111641 failed with error code: 1
+srun: error: worker-0: tasks 0-3: Exited with exit code 1
+srun: Terminating StepId=10.0
