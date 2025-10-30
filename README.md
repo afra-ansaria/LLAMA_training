@@ -1,116 +1,47 @@
-# Multi-node LLM finetuning on SLURM
 
-
-## Installation
-
-To get started, clone the repository and install the required dependencies:
 
 ```bash
-git clone <repo>
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## Environment Variables
 
-Before running any scripts, ensure you have set up the necessary environment variables:
-
-```bash
+```
 export HF_TOKEN=your_huggingface_token
-export WANDB_API_KEY=your_wandb_api_key # optional
 ```
 
-## Downloading the Model
+## Download the Model and Dataset
 
-To download the Meta Llama 3 model, run:
-
-```bash
-python baseModel/getLlamaModel.py
-.py
 ```
+# python task1/baseModel/getLlamaModel.py
 
-## Downloading the Dataset
-
-Download the sample dataset using:
-
-```bash
 wget -P src/llama_cookbook/datasets https://raw.githubusercontent.com/tatsu-lab/stanford_alpaca/main/alpaca_data.json
+
 ```
 
-## Fine-tuning
+## Task 1: Fine-tuning
 
-To fine-tune the model, use the provided SLURM scripts. Make sure to adjust the SLURM configurations according to your cluster setup (e.g. number of nodes, GPUs per node, etc.)
+To fine-tune the model,
 
-```bash
-chmod +x srun.sh # only needed once
+```
+chmod +x srun.sh # o
 sbatch sbatch.sh
 ```
 
-Note that `sbatch.sh` contains `#SBATCH --export=ALL` which exports all environment variables to the job including `HF_TOKEN` and `WANDB_API_KEY` exported above.
 
-## Check logs
+## Task 2: Inference
 
-
-- To check stdout logs, run:
-```
-tail -f O-llama-finetune_<N>.txt
+To generate a sample of 5. You can add or change more prompts
 ```
 
-- To check stderr logs, run:
-```
-tail -f E-llama-finetune_<N>.txt
+sbatch sbatch_run_infer_api.sh
 ```
 
-where `<N>` is the job number.
-The format of the log files is defined in `sbatch.sh`.
+## Task 3: Compare
 
-## Monitoring
-
-- To monitor the training process, we can open open a WandB dashboard
-
-![WandB Dashboard](imgs/wandb.png)
-
-- To monitor GPU utilization in real-time, we can open a bash shell in any worker node:
+Compare the model
 
 ```
-kubectl exec -it worker-1 -n alexkim-slurm -- /bin/bash
+sbatch sbatch_compare_models.sh
 ```
-then install `nvtop`:
-
-```bash
-apt install nvtop
-```
-
-Then, you can monitor the GPU utilization by running `nvtop`.
-
-- worker-1
-![nvtop on worker-1](imgs/worker-1-gpu.png)
-- worker-2
-![nvtop on worker-2](imgs/worker-2-gpu.png)
-- worker-3
-![nvtop on worker-3](imgs/worker-3-gpu.png)
-
-## Useful SLURM Commands
-
-Here are some useful SLURM commands to help you manage your jobs on the cluster:
-
-- **Submit a Job**: Use `sbatch` to submit a job script for batch execution.
-  ```bash
-  sbatch sbatch.sh
-  ```
-
-- **Check Job Queue**: Use `squeue` to display information about jobs in the queue.
-  ```bash
-  squeue -u $USER
-  ```
-
-- **Cancel a Job**: Use `scancel` to cancel a pending or running job.
-  ```bash
-  scancel <job_id>
-  ```
-
-- **Show Job Details**: Use `scontrol` to get detailed information about a specific job.
-  ```bash
-  scontrol show job <job_id>
-  ```
