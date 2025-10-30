@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=infer-compare
-#SBATCH --partition=gpu             # change to your GPU partition name
+#SBATCH --partition=main             # change to your GPU partition name
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --gpus=3                   # or --gres=gpu:1 on older Slurm configs
