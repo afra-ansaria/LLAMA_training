@@ -45,3 +45,8 @@ Compare the model
 ```
 sbatch sbatch_compare_models.sh
 ```
+
+
+## Task 4: GPU utilization 
+
+Refer to GPU_utilization folder
