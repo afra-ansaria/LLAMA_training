@@ -15,12 +15,13 @@ cd $SLURM_SUBMIT_DIR
 
 # Pick a port (can be any free one)
 PORT=8000
+
+# === Run FastAPI ===
+srun uvicorn inference:app --host 0.0.0.0 --port $PORT
+
 NODE_IP=$(hostname -I | awk '{print $1}')
 
 echo "🚀 Starting FastAPI server on GPU node..."
 echo "Node IP: $NODE_IP"
 echo "Port: $PORT"
 echo "curl -X POST http://$NODE_IP:$PORT/generate -H 'Content-Type: application/json' -d '{\"prompt\":\"Explain quantum computing\",\"max_tokens\":150}'"
-
-# === Run FastAPI ===
-srun uvicorn inference:app --host 0.0.0.0 --port $PORT
