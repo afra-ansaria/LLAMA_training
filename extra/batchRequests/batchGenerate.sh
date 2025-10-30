@@ -38,7 +38,8 @@ for p in "${prompts[@]}"; do
   esc_text=$(printf '%s' "$text" | sed 's/"/""/g')
   esc_resp=$(printf '%s' "$resp" | tr -d '\n' | sed 's/"/""/g')
 
-  echo "$i,\"$esc_prompt\",\"$esc_text\",\"$esc_resp\",\"$ts\"" >> results.csv
+  mkdir -p results
+  echo "$i,\"$esc_prompt\",\"$esc_text\",\"$esc_resp\",\"$ts\"" >> results/results.csv
   echo "[$i/${#prompts[@]}] OK"
   ((i++))
 done
