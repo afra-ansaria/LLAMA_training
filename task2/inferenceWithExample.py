@@ -3,7 +3,7 @@ import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
 BASE = "./llama-3-8b"          # the base you downloaded with download_model.py
-ADAPTER = "saved_peft_model"    # your finetune --output_dir
+ADAPTER = "./saved_peft_model"    # your finetune --output_dir
 
 # 1) load base
 tokenizer = AutoTokenizer.from_pretrained(BASE, use_fast=True)
