@@ -19,19 +19,26 @@ def load_model(path_or_name, tokenizer_name=None, torch_dtype=torch.bfloat16, de
     if tokenizer.pad_token_id is None:
         tokenizer.pad_token_id = tokenizer.eos_token_id
     cfg = AutoConfig.from_pretrained(path_or_name)
+    # model = AutoModelForCausalLM.from_pretrained(
+    #     path_or_name,
+    #     torch_dtype=torch_dtype,
+    #     device_map="auto" if torch.cuda.is_available() else None,
+    # )
+    # if device == "cuda" and torch.cuda.is_available():
+    #     model = model.to(device)
     model = AutoModelForCausalLM.from_pretrained(
-        path_or_name,
-        torch_dtype=torch_dtype,
-        device_map="auto" if torch.cuda.is_available() else None,
-    )
-    if device == "cuda" and torch.cuda.is_available():
-        model = model.to(device)
+    path_or_name,
+    torch_dtype=torch.bfloat16,
+    device_map=None,
+)
+    if torch.cuda.is_available():
+        model = model.to("cuda:0")
     model.eval()
     return model, tokenizer, cfg
 
 
 def attach_peft(base_model, peft_dir):
-    print(f"🔗 Attaching PEFT adapter from: {peft_dir}")
+    print(f"Attaching PEFT adapter from: {peft_dir}")
     ft_model = PeftModel.from_pretrained(base_model, peft_dir)
     try:
         ft_model = ft_model.merge_and_unload()
@@ -66,8 +73,8 @@ def gen_one(model, tokenizer, prompt, max_new_tokens=150, temperature=0.2, top_p
 # ----------------------------------------------------------
 def main():
     # Both models now live in ../models/
-    base_model_path = "../models/llama-3-8b"
-    peft_model_path = "../models/save_finetuned_model"
+    base_model_path = "../../models/llama-3-8b"
+    peft_model_path = "../../models/save_finetuned_model"
 
     # Save comparison CSV under results/models/
     results_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../results"))
