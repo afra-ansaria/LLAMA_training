@@ -109,6 +109,10 @@ def main():
             "base_new_tokens": b_ntok,
             "ft_new_tokens": f_ntok,
         })
+        print(f"\n[{i}] Prompt: {p}")
+        print(f"Base output: {base_txt[:120]}...")
+        print(f"FT output:   {ft_txt[:120]}...\n")
+
 
     with open(out_csv, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=rows[0].keys())
