@@ -11,16 +11,15 @@ echo "HOST_ADDR=$HOST_ADDR"
 echo "MAIN_PROCESS_PORT=$MAIN_PROCESS_PORT"
 
 source .venv/bin/activate
-python ../baseModel/getLlamaModel.py
 mkdir -p logs
 torchrun --nnodes $SLURM_NNODES \
 --nproc_per_node $GPUS_PER_NODE \
 --master_addr $HOST_ADDR \
 --master_port $MAIN_PROCESS_PORT \
 --node_rank=$SLURM_NODEID \
-./fineTuning/finetune.py \
---model_name ../models/llama-3-8b \
---output_dir ../models/save_finetuned_model \
+task1/fineTuning/finetune.py \
+--model_name models/llama-3-8b \
+--output_dir models/save_finetuned_model \
 --use_peft \
 --peft_method lora \
 --enable_fsdp \

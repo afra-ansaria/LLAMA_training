@@ -7,8 +7,8 @@ import torch
 
 app = FastAPI()
 
-BASE = "./llama-3-8b"
-ADAPTER = "./saved_peft_model"
+BASE = "../../models/llama-3-8b"
+ADAPTER = "../../models/saved_peft_model"
 
 print("Loading model...")
 tokenizer = AutoTokenizer.from_pretrained(BASE, use_fast=True)

@@ -6,8 +6,7 @@
 To get started, clone the repository and install the required dependencies:
 
 ```bash
-git clone https://github.com/alex000kim/multi-node-llm-finetuning-slurm.git
-cd multi-node-llm-finetuning-slurm
+git clone <repo>
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -27,7 +26,8 @@ export WANDB_API_KEY=your_wandb_api_key # optional
 To download the Meta Llama 3 model, run:
 
 ```bash
-python download_model.py
+python baseModel/getLlamaModel.py
+.py
 ```
 
 ## Downloading the Dataset

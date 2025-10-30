@@ -67,10 +67,10 @@ def gen_one(model, tokenizer, prompt, max_new_tokens=150, temperature=0.2, top_p
 def main():
     # Both models now live in ../models/
     base_model_path = "../models/llama-3-8b"
-    peft_model_path = "../models/saved_peft_model"
+    peft_model_path = "../models/save_finetuned_model"
 
     # Save comparison CSV under results/models/
-    results_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../models"))
+    results_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../results"))
     os.makedirs(results_dir, exist_ok=True)
     out_csv = os.path.join(results_dir, "compare_outputs.csv")
 
@@ -79,7 +79,7 @@ def main():
     ft = attach_peft(base, peft_model_path)
 
     prompts = [
-        "Explain quantum computing to a 30-year-old in ≤150 words.",
+        "Explain quantum computing to a 20-year-old in ≤150 words.",
         "Give three practical tips to optimize Python for numerical workloads.",
         "What’s the difference between data, tensor, and pipeline parallelism? Keep it concise.",
         "Summarize LayerNorm vs. RMSNorm and when to prefer each.",
