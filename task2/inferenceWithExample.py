@@ -2,8 +2,12 @@
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
-BASE = "./llama-3-8b"          # the base you downloaded with download_model.py
-ADAPTER = "./saved_peft_model"    # your finetune --output_dir
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../models"))
+BASE = os.path.join(BASE_DIR, "llama-3-8b")
+ADAPTER = os.path.join(BASE_DIR, "saved_peft_model")
+
+print(f"Loading base model from: {BASE}")
+print(f"Loading adapter from: {ADAPTER}")
 
 # 1) load base
 tokenizer = AutoTokenizer.from_pretrained(BASE, use_fast=True)
