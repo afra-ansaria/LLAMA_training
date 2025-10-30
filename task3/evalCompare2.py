@@ -33,11 +33,12 @@ def attach_peft_on_copy(base_model_path, peft_dir, device="cuda:0"):
     return ft
 
 def encode_prompt(tok, prompt, device, model=None):
-    # If this tokenizer supports chat template (e.g., Llama Instruct), use it.
-    if hasattr(tok, "apply_chat_template"):
+    # Use chat template *only* if it exists
+    if hasattr(tok, "chat_template") and tok.chat_template:
         msgs = [{"role": "user", "content": prompt}]
         ids = tok.apply_chat_template(msgs, return_tensors="pt")
         return {"input_ids": ids.to(device), "attention_mask": torch.ones_like(ids).to(device)}
+    # Otherwise, plain text
     return tok(prompt, return_tensors="pt").to(device)
 
 def gen_one(model, tok, prompt, device, max_new_tokens=200, min_new_tokens=32,
