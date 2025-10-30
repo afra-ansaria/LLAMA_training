@@ -4,11 +4,13 @@ from pydantic import BaseModel
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from peft import PeftModel
 import torch
+import os
 
 app = FastAPI()
 
-BASE = "../../models/llama-3-8b"
-ADAPTER = "../../models/saved_peft_model"
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../models"))
+BASE = os.path.join(BASE_DIR, "llama-3-8b")
+ADAPTER = os.path.join(BASE_DIR, "save_finetuned_model")
 
 print("Loading model...")
 tokenizer = AutoTokenizer.from_pretrained(BASE, use_fast=True)
