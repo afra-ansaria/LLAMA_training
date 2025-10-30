@@ -22,4 +22,4 @@ echo "Running on host: $(hostname)"
 echo "CUDA_VISIBLE_DEVICES=$CUDA_VISIBLE_DEVICES"
 
 # Use srun so Slurm binds resources correctly
-srun python evalCompare2.py
+srun python evalCompare.py
