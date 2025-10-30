@@ -1,5 +1,6 @@
 # run_infer.py. Simple example file. You can change the prompt below. 
 import torch
+import os
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../models"))
