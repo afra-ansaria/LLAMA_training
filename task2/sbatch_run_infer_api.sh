@@ -17,7 +17,7 @@ cd $SLURM_SUBMIT_DIR
 PORT=8000
 
 # === Run FastAPI ===
-srun uvicorn inference:app --host 0.0.0.0 --port $PORT
+srun --gres=gpu:1 uvicorn inference:app --host 0.0.0.0 --port 8000
 
 NODE_IP=$(hostname -I | awk '{print $1}')
 
