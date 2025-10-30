@@ -20,7 +20,7 @@ model = PeftModel.from_pretrained(model, ADAPTER).to("cuda")
 model.eval()
 
 # 3) generate
-prompt = "Explain diffusion models to a high school student."
+prompt = "Explain the concept of transformers to a high school student."
 inputs = tokenizer(prompt, return_tensors="pt").to("cuda")
 with torch.no_grad():
     out = model.generate(

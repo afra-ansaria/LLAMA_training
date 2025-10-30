@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-NODE_IP="10.6.60.253"
+NODE_IP="10.7.3.248"
 PORT=8000
 URL="http://${NODE_IP}:${PORT}/generate"
 
