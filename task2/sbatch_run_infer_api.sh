@@ -12,7 +12,6 @@
 # === Setup ===
 source ~/.bashrc
 cd $SLURM_SUBMIT_DIR
-source .venv/bin/activate
 
 # Pick a port (can be any free one)
 PORT=8000
@@ -24,4 +23,4 @@ echo "Port: $PORT"
 echo "curl -X POST http://$NODE_IP:$PORT/generate -H 'Content-Type: application/json' -d '{\"prompt\":\"Explain quantum computing\",\"max_tokens\":150}'"
 
 # === Run FastAPI ===
-srun uvicorn inference_api:app --host 0.0.0.0 --port $PORT
+srun uvicorn inference:app --host 0.0.0.0 --port $PORT
