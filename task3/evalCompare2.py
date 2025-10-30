@@ -78,12 +78,13 @@ def main():
     ft = attach_peft_on_copy(base_model_path, peft_model_path, device=device)
 
     prompts = [
-        "Explain quantum computing to a 20-year-old in ≤150 words.",
-        "Give three practical tips to optimize Python for numerical workloads.",
-        "What’s the difference between data, tensor, and pipeline parallelism? Keep it concise.",
-        "Summarize LayerNorm vs. RMSNorm and when to prefer each.",
-        "Describe a simple caching strategy for high-throughput LLM inference APIs.",
+    "Explain how transformers revolutionized natural language processing in under 200 words.",
+    "Describe the differences between supervised, unsupervised, and reinforcement learning with one practical example each.",
+    "Write a short motivational message for a developer debugging code at 3 AM.",
+    "Summarize the key steps involved in deploying a large language model to production.",
+    "If you could give one piece of advice to future AI researchers, what would it be?"
     ]
+
 
     rows = []
     for i, p in enumerate(prompts, 1):
@@ -109,7 +110,7 @@ def main():
         writer.writeheader()
         writer.writerows(rows)
 
-    print(f"✅ comparison results saved to: {out_csv}")
+    print(f"comparison results saved to: {out_csv}")
 
 if __name__ == "__main__":
     main()
