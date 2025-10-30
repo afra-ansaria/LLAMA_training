@@ -73,8 +73,8 @@ def gen_one(model, tokenizer, prompt, max_new_tokens=150, temperature=0.2, top_p
 # ----------------------------------------------------------
 def main():
     # Both models now live in ../models/
-    base_model_path = "../../models/llama-3-8b"
-    peft_model_path = "../../models/save_finetuned_model"
+    base_model_path = "../models/llama-3-8b"
+    peft_model_path = "../models/save_finetuned_model"
 
     # Save comparison CSV under results/models/
     results_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../results"))
